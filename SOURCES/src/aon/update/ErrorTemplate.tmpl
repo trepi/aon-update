@@ -1,0 +1,26 @@
+<span class="aon-update-help" />
+<div class="aon-errors" >
+	<table class="aon-update-table"  >
+		<tbody>
+			#for err_msg in $err_msgs
+			<tr class="aon-update-row">
+				<td>
+					<span class="aon-error-message" >
+						$err_msg
+					</span>
+				</td>
+			</tr> 
+			#end for
+		</tbody>
+		<tfoot>
+		<tfoot>
+        	<tr >
+          		<td style="text-align:center;" >
+            		<input type="button" value="Volver" class="aon-update-button"  onclick="window.history.back()" />
+          		</td>
+        	</tr>
+		</tfoot>
+		
+		</tfoot>
+	</table>
+</div>

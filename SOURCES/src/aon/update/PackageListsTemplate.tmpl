@@ -1,0 +1,84 @@
+<span class="aon-update-help" />
+<table class="aon-update-table" cellpadding="0" cellspacing="0" >
+
+	<thead>
+		<tr style="padding-bottom:10px;">
+			<form action='' >
+    			<td colspan="5" style="padding-bottom: 15px;">
+    					<input type="text" name="pattern" class="aon-update-input" style="width:98%;margin-top:5px;" value="$pattern" />
+    			</td>
+    			<td colspan="1" style="padding-bottom: 15px;">
+    				<input type="submit" value="Filtrar" class="aon-update-button" />
+    			</td>
+			</form>
+		<tr>
+    	<tr class="aon-update-head" >
+          		<td  colspan="2">Programa</td>
+          		<td>Versi&oacute;n</td>
+          		<td>Resum&eacute;n</td>
+          		<td>Repositorio</td>
+          		<td>Tamaño</td>
+    	</tr>
+	</thead>
+
+	<form method="POST" action="$action">
+
+		<tbody> 
+			#set $step = 0
+			#for $package in $packages
+				#set $step += 1
+				#if $step % 2 > 0 
+            	<tr>
+				#else
+            	<tr style="background:#eee">
+				#end if 
+                  		<td>
+                    		<input type="checkbox" id="package" name="package" value="$package.name" />
+                  		</td>
+                  		<td>
+                    		<label>$package.name</label>
+                  		</td>
+                  		<td>
+                    		<label>$package.version-$package.release</label>
+                  		</td>
+                  		<td >
+                    		$package.summary
+                  		</td>
+                  		<td>
+                    		$package.repoid
+                  		</td>
+                  		<td>
+                  			#set kbytes =  $package.size/1024
+                  			#if $kbytes < 1024
+	                    		$kbytes <label>K</label>
+	                    	#else
+                  				#set mbytes =  $kbytes/1024 
+	                    		#if $mbytes < 1024
+		                    		$mbytes <label>M</label>
+		                    	#else
+		                    		$mbytes/1024 <label>G</label>
+		                    	#end if 
+	                    	#end if
+                  		</td>
+            	</tr>
+        	#end for
+    		<!--tr>
+    			<td colspan="6">
+    				<iframe class="aon-update-input" style="width:100%"></iframe>
+    			</td>
+    		<tr-->
+
+		</tbody>
+
+		<tfoot>
+        	<tr >
+          		<td colspan="5" style="text-align:center;">
+            		<input type="submit" value="$actionlabel" class="aon-update-button"/>
+          		</td>
+        	</tr>
+		</tfoot>
+	</form>
+
+</table>
+                    
+                    

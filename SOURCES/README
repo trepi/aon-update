@@ -1,0 +1,21 @@
+                                           _       _       
+                                          | |     | |      
+   __ _  ___  _ __         _   _ _ __   __| | __ _| |_ ___ 
+  / _` |/ _ \| '_ \   _   | | | | '_ \ / _` |/ _` | __/ _ \
+ | (_| | (_) | | | | |_|  | |_| | |_) | (_| | (_| | ||  __/
+  \__,_|\___/|_| |_|       \__,_| .__/ \__,_|\__,_|\__\___|
+                                | |                        
+                                |_|                        
+
+
+The aon-update module
+---------------------
+
+The aon-update module consists an a minimal web interface,
+for Yum.
+
+
+Configuation Details are in the docs subdirectory.
+
+--
+Raúl Trepiana, <rtrepiana@gmail.com>, April 07, 2009

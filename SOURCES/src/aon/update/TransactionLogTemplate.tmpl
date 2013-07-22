@@ -1,0 +1,99 @@
+<span class="aon-update-help" />
+<table class="aon-update-table" cellpadding="0" cellspacing="0" >
+
+	<thead>
+    	<tr class="aon-update-head" >
+          		<td  colspan="2">Programa</td>
+          		<td>Versi&oacute;n</td>
+          		<td>Resum&eacute;n</td>
+          		<td>Repositorio</td>
+          		<td>Tamaño</td>
+    	</tr>
+	</thead>
+
+	<tbody > 
+		#set $step = 0
+		#for $package in $log.installed
+			#set $step += 1
+			#if $step % 2 > 0 
+        	<tr class="aon-update-row"   >
+			#else
+        	<tr class="aon-update-row"   style="background:#eee" >
+			#end if 
+              		<td>
+                		<label class="aon-installed">Instalado</label>
+              		</td>
+              		<td>
+                		<label >$package.name</label>
+              		</td>
+              		<td>
+                		<label>$package.version-$package.release</label>
+              		</td>
+              		<td>
+                		$package.summary
+              		</td>
+              		<td>
+                		$package.repoid
+              		</td>
+              		<td>
+                		$package.size <label >K</label>
+              		</td>
+        	</tr>
+    	#end for
+		#for $package in $log.updated
+			#set $step += 1
+			#if $step % 2 > 0 
+        	<tr class="aon-update-row"   >
+			#else
+        	<tr class="aon-update-row"   style="background:#eee" >
+			#end if 
+              		<td>
+                		<label class="aon-updated" >Actualizado</label>
+              		</td>
+              		<td>
+                		<label >$package.name</label>
+              		</td>
+              		<td>
+                		<label>$package.version-$package.release</label>
+              		</td>
+              		<td>
+                		$package.summary
+              		</td>
+              		<td>
+                		$package.repoid
+              		</td>
+              		<td>
+                		$package.size <label >K</label>
+              		</td>
+        	</tr>
+    	#end for
+		#for $package in $log.erased
+			#set $step += 1
+			#if $step % 2 > 0 
+        	<tr >
+			#else
+        	<tr style="background:#eee" >
+			#end if 
+              		<td>
+                		<label class="aon-removed">Eliminado</label>
+              		</td>
+              		<td >
+                		<label>$package</label>
+              		</td>
+              		<td colspan="4">&nbsp;</td>
+        	</tr>
+    	#end for
+
+	</tbody>
+
+	<tfoot>
+    	<tr pattern="listItem">
+      		<td class="">
+      		</td>
+      		<td colspan="4" style="text-align:center;">
+        		<input type="button" value="Volver" class="aon-update-button" onclick="window.navigate(document.referrer)"/>
+      		</td>
+    	</tr>
+	</tfoot>
+
+</table>

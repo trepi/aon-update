@@ -1,0 +1,82 @@
+#!/bin/bash
+# Startup script for aon-update
+#
+# chkconfig: - 80 20
+# description: aon-update, a web application server
+#
+# config: $instance/etc/aon-update.conf
+
+# Source function library.
+. /etc/init.d/functions
+
+RETVAL=0
+prog="@NAME"
+exec="@EXEC"
+service="@SERVICE"
+
+start() {
+        echo -n $"Starting $prog: "
+        $exec start 2>/dev/null
+        if [ $? = 0 ]; then
+            #success
+            success
+            echo
+            RETVAL=0
+        else
+            #failed
+            failure
+            echo
+            RETVAL=1
+        fi
+        return $RETVAL
+}
+
+stop() {
+        echo -n $"Stopping $prog: "
+        $exec stop 2>/dev/null
+        if [ $? = 0 ]; then
+            # success
+            success
+            echo
+            RETVAL=0
+        else
+            # failed
+            failure
+            echo
+            RETVAL=1
+        fi
+        return $RETVAL
+}
+
+
+restart() {
+	stop
+	start
+}
+
+
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+	status $service
+	RETVAL=$?
+	;;
+  restart)
+	restart
+	;;
+  condrestart)
+	if status $prog; then  
+		start
+	fi
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|status|restart|condrestart}"
+	RETVAL=2
+esac
+
+exit $RETVAL

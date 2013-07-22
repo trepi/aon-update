@@ -1,0 +1,38 @@
+#! /bin/bash
+# 
+#                                           _       _       
+#                                          | |     | |      
+#   __ _  ___  _ __         _   _ _ __   __| | __ _| |_ ___ 
+#  / _` |/ _ \| '_ \   _   | | | | '_ \ / _` |/ _` | __/ _ \
+# | (_| | (_) | | | | |_|  | |_| | |_) | (_| | (_| | ||  __/
+#  \__,_|\___/|_| |_|       \__,_| .__/ \__,_|\__,_|\__\___|
+#                                | |                        
+#                                |_|                        
+#
+
+CFGFILE="@CFG"
+TAPFILE="@TAP"
+RUNDIR="@RUNDIR"
+
+PIDFILE="/var/run/aon-update.pid"
+
+
+
+case "$1" in
+  start)
+	twistd -d $RUNDIR -f $RUNDIR/$TAPFILE --pidfile=$PIDFILE
+	RETVAL=$?
+	;;
+  stop)
+	kill -9 $(cat $PIDFILE)
+	RETVAL=$?
+	[ $RETVAL = 0 ] && rm -f $PIDFILE
+	;;
+  *)
+	echo $"Usage: $0 {start|stop}"
+	RETVAL=2
+esac
+
+exit $RETVAL
+
+
